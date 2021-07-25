@@ -26,7 +26,7 @@ public class ArticleService {
 		articleRepository.delete(article);
 	}
 	
-	public List<Article> findAllArticles(Article article) {	
+	public List<Article> findAllArticles() {	
 		return articleRepository.findAll();
 	}
 	

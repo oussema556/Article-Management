@@ -56,16 +56,23 @@ public class UserService{
 		return userRepository.save(user);
 	}
 	
-	public User UpdateUser(User user) {	
+	public List<User> findAllUsers() {	
+		return userRepository.findAll();
+	}
+	
+	public User UpdateHardUser(User user) {	
 		return userRepository.save(user);
+	}
+	public User UpdateUser(User user, int id) {
+		User user2=userRepository.findById(id).get();
+		user2=user;
+		return userRepository.save(user2);
 	}
 	public void deleteUser(User user) {	
 		userRepository.delete(user);
 	}
 	
-	public List<User> findAllArticles(User user) {	
-		return userRepository.findAll();
-	}
+	
 		
 	
 }

@@ -104,7 +104,7 @@ public class ArticlesManagementApplication implements CommandLineRunner{
 		article1.setUser(NormalUser);
 		
 		NormalUser.getArticles().add(article1);
-		userService.UpdateUser(NormalUser);
+		userService.UpdateHardUser(NormalUser);
 		
 		
 		System.out.println(articleService.findbyNameAndDescription("xx"));

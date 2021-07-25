@@ -48,6 +48,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         try {
             http.authorizeRequests()
             .antMatchers("/createArticle").hasAuthority("USER")
+            .antMatchers("/updateAccount").hasAuthority("USER")
+            .antMatchers("/userArticles").hasAuthority("USER")
             .antMatchers("/").permitAll()
             .and()
             .formLogin()

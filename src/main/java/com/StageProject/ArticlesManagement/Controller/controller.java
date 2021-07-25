@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.StageProject.ArticlesManagement.Entity.Article;
+import com.StageProject.ArticlesManagement.Entity.Category;
 import com.StageProject.ArticlesManagement.Entity.User;
 import com.StageProject.ArticlesManagement.Service.ArticleService;
 import com.StageProject.ArticlesManagement.Service.CategoryService;
@@ -26,15 +27,42 @@ public class controller {
 	@Autowired
 	ArticleService articleService;
  	
+
+	@RequestMapping("/")
+	public String homepage() {
+		return "home";
+	}
+	
+	
+	//LOGIN
 	@RequestMapping("/login")
 	public String getLoginForm() {
 		return "login";
 	}
 	
-	@RequestMapping("/")
-	public String homepage() {
-		return "home";
+	
+	//REGISTER
+	@RequestMapping("/register")
+	public String getRegisterForm(Model model) {
+		model.addAttribute("User",new User());
+		return "register";
 	}
+	@RequestMapping(value="/insertUserIntoDB", method=RequestMethod.POST)
+	public String insertUserIntoDB(Model model, @ModelAttribute("User") User user) {
+		try {
+			userService.insertUser(user);
+			model.addAttribute("user",user);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return "redirect:/login";
+	}
+	
+
+	//CREATE ARTICLE
 	@RequestMapping("/createArticle")
 	public String CreateArticle(Model model) {
 		model.addAttribute("categories",categoryService.findAllCategories());
@@ -49,7 +77,6 @@ public class controller {
 			article.setUser(currentLogedInUser);
 			articleService.insertArticle(article);
 			model.addAttribute("article",article);
-			System.out.println(article.getArticleCategory()+"$$$$$$$");
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -59,6 +86,79 @@ public class controller {
 		return "redirect:/";
 	}
 	
+	
+	// ADD CATEGORY
+	@RequestMapping("/addCategory")
+	public String addCategory(Model model) {
+		model.addAttribute("Category", new Category());
+		return "addCategory";
+	}
+	
+	@RequestMapping(value="/addCateogryIntoDB", method=RequestMethod.POST)
+	public String addCateogryIntoDB(Model model, @ModelAttribute("Category") Category category) {
+		try {
+			categoryService.insertCategory(category);
+			model.addAttribute("category",category);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/adminDashboard";
+	}
+	
+	
+	
+	//  All Articles
+	@RequestMapping("/adminDashboardArticles")
+	public String adminDashboardArticles(Model model) {
+		model.addAttribute("articles",articleService.findAllArticles());
+		return "adminDashboardArticles";
+	}
+	
+	// All Users
+	@RequestMapping("/adminDashboardUsers")
+	public String adminDashboardUsers(Model model) {
+		model.addAttribute("users",userService.findAllUsers());
+		return "adminDashboardUsers";
+	}
+	
+	
+	// GET USER ARTICLES
+	@RequestMapping("/userArticles")
+	public String userArticles(Model model) {
+		try {
+			User currentLogedInUser=userService.getLoggedUser();
+			model.addAttribute("articles",currentLogedInUser.getArticles());
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "userAllArticles";
+	}
+	
+	
+	
+	
+	
+	/*@RequestMapping("/updateAccount")
+	public String getUpdateAccountForm(Model model) {
+		model.addAttribute("User",new User());
+		return "updateUser";
+	}
+	@RequestMapping(value="/updateUserIntoDB", method=RequestMethod.POST)
+	public String	updateUserIntoDB(Model model, @ModelAttribute("User") User user) {
+		try {
+			int currentLogedInUserId=userService.getLoggedUser().getUserId();
+			System.out.println(currentLogedInUserId);
+			userService.UpdateUser(user,currentLogedInUserId);
+			model.addAttribute("article",user);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return "redirect:/home";
+	}*/
 	
 	
 	
