@@ -16,7 +16,7 @@ public class Role {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int id;
-	private String RoleType;
+	private String roleType;
 
 	@ManyToMany(cascade = CascadeType.ALL , fetch =FetchType.LAZY , mappedBy = "roles" )
     private Set<User> users = new HashSet<>();
@@ -39,7 +39,7 @@ public class Role {
 	public Role(int id, String roleType) {
 		super();
 		this.id = id;
-		RoleType = roleType;
+		this.roleType = roleType;
 	}
 
 
@@ -54,12 +54,12 @@ public class Role {
 
 
 	public String getRoleType() {
-		return RoleType;
+		return roleType;
 	}
 
 
 	public void setRoleType(String roleType) {
-		RoleType = roleType;
+		roleType = roleType;
 	}
 	
 

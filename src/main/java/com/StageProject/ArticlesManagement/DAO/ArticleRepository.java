@@ -11,6 +11,6 @@ import com.StageProject.ArticlesManagement.Entity.Article;
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Integer>{
 	
-	@Query(value = "SELECT * FROM Articles a WHERE a.name like %:keyWord% and a.description like %:keyWord%", nativeQuery = true)
+	@Query(value = "SELECT * FROM Articles a WHERE a.name like %:keyWord% or a.description like %:keyWord%", nativeQuery = true)
 	Collection<Article> findByNameAndDescription(String keyWord);
 }

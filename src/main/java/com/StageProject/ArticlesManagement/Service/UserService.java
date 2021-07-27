@@ -63,16 +63,13 @@ public class UserService{
 	public User UpdateHardUser(User user) {	
 		return userRepository.save(user);
 	}
-	public User UpdateUser(User user, int id) {
-		User user2=userRepository.findById(id).get();
-		user2=user;
-		return userRepository.save(user2);
-	}
+
 	public void deleteUser(User user) {	
 		userRepository.delete(user);
 	}
-	
-	
-		
-	
+
+
+    public User updateUser(User user) {
+		return userRepository.save(user);
+    }
 }

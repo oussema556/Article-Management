@@ -15,4 +15,8 @@ public class RoleService {
 	public Role newRole(Role r) {
         return roleRepository.save(r);
     }
+
+    public Role findByRoleType(String roleType) {
+	    return roleRepository.findByRoleType(roleType);
+    }
 }

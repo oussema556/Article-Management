@@ -37,4 +37,12 @@ public class ArticleService {
 		}
 		return articles;
 	}
+
+    public Article findById(int id) {
+		return articleRepository.getById(id);
+    }
+
+	public Article updateArticle(Article article) {
+		return articleRepository.save(article);
+	}
 }

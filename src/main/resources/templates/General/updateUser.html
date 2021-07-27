@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
 		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
@@ -20,7 +20,6 @@
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-          outline:hidden;
 }
 
 body {
@@ -134,47 +133,22 @@ body {
 </style>
 
     <div class="container">
-        <div class="login-container" data-aos="zoom-out-down">
+      
+
+          <div class="login-container" data-aos="zoom-out-down">
            
-            <form th:action="@{/insertArticleIntoDB}" th:object="${Article}" class="my-form" method="POST">
-                <h1>Add Article</h1>
+            <form th:action="@{/updateUserIntoDB}" th:object="${User}" class="my-form" method="POST">
+                <h1>Update</h1>
+
                <div class="input-group">
-                <input type="text" placeholder="Article name" id="name" name="name" th:field="*{name}">
-               </div>
-       
-               <div class="input-group">
-                <input type="text" placeholder="Description" id="description" name="description"th:field="*{description}" >
+                <input type="text" placeholder="Email" id="email" name="email">
                </div>
                 <div class="input-group">
-                <input type="text" placeholder="Model Number" id="modelNumber" name="modelNumber" th:field="*{modelNumber}">
-               </div>
-                 <div class="input-group">
-                <input type="text" placeholder="Page Number" id="pageNumber" name="pageNumber" th:field="*{pageNumber}">
-               </div>
-                <div class="input-group">
-					<label for="cars">Choose a Category:</label>
-					
-					<select th:field="*{articleCategory}">
-					  <option th:each="category:${categories}" th:value="${category.categoryId}"  th:text="${category.categoryName}">category name</option>
-					</select>               
-				</div>
-               
-                <input class="login-button" value="Create Article" type="submit">
-                
+                    <input type="password" placeholder="xxxxxxxx" id="password" name="password">
+                </div>
+                <input class="login-button" value="Sign In" type="submit">
             </form>
             
-        </div>
-        <div class="signup-container" data-aos="flip-right" data-aos-delay="300">
-            <div class="title">
-                <h1>Sign up</h1>
-            </div>
-           <div class="intro">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque 
-            </p>
-           </div>
-                <div class="sign-btn">
-                    <button class="Sign-button">Sign Up</button>    
-                </div>
         </div>
     </div>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -182,4 +156,4 @@ body {
         AOS.init();
       </script>
 </body>
-</html>>
+</html>

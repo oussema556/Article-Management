@@ -15,18 +15,12 @@
 
 <body>
 	<div class="container">
-		<form th:action="@{/searchForArticle}" th:object="${keyword}">
-			<input type="search" value="keyword" name="keyword" required>
-			<input type="submit" value="Search">
-		</form>
   <div class="row row-cols-4">
     <div class="col" th:each="article:${articles}">
 	<div class="card" style="width: 18rem;">
   		<div class="card-body">
-   			 <h5 class="card-title" th:text="${article.name}"></h5>
-  
-    		 <p class="card-text">Title: <span th:text="${article.description}"></span></p>
-    		 <p class="card-text">Description: <span th:text="${article.modelNumber}"></span></p>
+   			 <h5 class="card-title" >Title : <span th:text="${article.name}"></span></h5>
+    		 <p class="card-text">Description: <span th:text="${article.description}"></span></p>
     		 <p class="card-text">Model Number: <span  th:text="${article.modelNumber}"></span></p>
     		 <p class="card-text">Page Number: <span th:text="${article.pageNumber}"></span></p>
   		</div>
@@ -34,10 +28,10 @@
 
 
 	</div>
-    
+
   </div>
 </div>
-	
+
 </body>
 </html>
 

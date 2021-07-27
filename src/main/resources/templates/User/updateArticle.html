@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <meta charset="UTF-8">
@@ -20,6 +20,7 @@
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+          outline:hidden;
 }
 
 body {
@@ -132,42 +133,41 @@ body {
 /*# sourceMappingURL=style.css.map */
 </style>
 
-    <div class="container">
-      
-        <div class="signup-container" data-aos="flip-right" data-aos-delay="300">
-            <div class="title">
-                <h1>Sign in</h1>
+<div class="container">
+    <div class="login-container" data-aos="zoom-out-down">
+
+        <form th:action="@{/User/updateArticleIntoDB/{articleId}(articleId=${Article.articleId})}" th:object="${Article}" class="my-form" method="POST">
+            <h1>Update Article</h1>
+            <div class="input-group">
+                <input type="text" placeholder="Article name" id="name" name="name" th:field="*{name}">
             </div>
-           <div class="intro">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque 
-            </p>
-           </div>
-                <div class="sign-btn">
-                    <a class="Sign-button" href="login.html">Sign Up</a>    
-                </div>
-        </div>
-          <div class="login-container" data-aos="zoom-out-down">
-           
-            <form th:action="@{/updateUserIntoDB}" th:object="${User}" class="my-form" method="POST">
-                <h1>Sign in</h1>
-                 <div class="input-group">
-                <input type="text" placeholder="UserName" id="username" name="username" th:field="*{userName}" th:text="*{userName}">
-               </div>
-               <div class="input-group">
-                <input type="text" placeholder="Email" id="email" name="email">
-               </div>
-                <div class="input-group">
-                    <input type="password" placeholder="xxxxxxxx" id="password" name="password">
-                </div>
-                <input class="login-button" value="Sign In" type="submit">
-                <a href="login.html" class="form-link"> Already have an Account?</a>
-            </form>
-            
-        </div>
+
+            <div class="input-group">
+                <input type="text" placeholder="Description" id="description" name="description"th:field="*{description}" >
+            </div>
+            <div class="input-group">
+                <input type="text" placeholder="Model Number" id="modelNumber" name="modelNumber" th:field="*{modelNumber}">
+            </div>
+            <div class="input-group">
+                <input type="text" placeholder="Page Number" id="pageNumber" name="pageNumber" th:field="*{pageNumber}">
+            </div>
+            <div class="input-group">
+                <label for="">Choose a Category:</label>
+                <select th:field="*{articleCategory}">
+                    <option th:each="category:${categories}" th:value="${category.categoryId}"  th:text="${category.categoryName}">category name</option>
+                </select>
+            </div>
+
+            <input class="login-button" value="Save" type="submit">
+
+        </form>
+
     </div>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
+
+</div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
         AOS.init();
       </script>
 </body>
-</html>
+</html>>

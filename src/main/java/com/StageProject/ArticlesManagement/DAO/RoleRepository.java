@@ -12,4 +12,5 @@ import com.StageProject.ArticlesManagement.Entity.Role;
 public interface RoleRepository extends JpaRepository<Role, Integer>{
 
 
+    Role findByRoleType(String roleType);
 }

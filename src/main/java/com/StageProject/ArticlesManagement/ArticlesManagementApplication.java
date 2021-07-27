@@ -55,7 +55,7 @@ public class ArticlesManagementApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		BCryptPasswordEncoder encoder;
-		
+
 		User AdminUser = new User();
 		AdminUser.setUserId(1);
 		AdminUser.setEmail("gg@gmail.com");
@@ -65,23 +65,23 @@ public class ArticlesManagementApplication implements CommandLineRunner{
 		Role adminRole = roleService.newRole(new Role(1,"ADMIN"));
 		AdminUser.getRoles().add(adminRole);
 		userService.insertUser(AdminUser);
-		
+
 		User NormalUser = new User();
 		NormalUser.setUserId(2);
-		NormalUser.setEmail("firas@gmail.com"); 
+		NormalUser.setEmail("firas@gmail.com");
 		NormalUser.setUserName("firas");
 		encoder = new BCryptPasswordEncoder();
 		NormalUser.setPassword(encoder.encode("wess"));
 		Role userRole = roleService.newRole(new Role(2,"USER"));
 		NormalUser.getRoles().add(userRole);
-			
-	
+
+
 		userService.insertUser(NormalUser);
-		
-		
+
+
 		Article article1 = new Article();
-		article1.setName("article1");
-		article1.setDescription("this is article number 1");
+		article1.setName("article1dog");
+		article1.setDescription("this is number 1");
 		article1.setModelNumber("114523");
 		article1.setUser(NormalUser);
 			Category category1= new Category();
@@ -93,7 +93,7 @@ public class ArticlesManagementApplication implements CommandLineRunner{
 				tagsService.insertTags(tag1);
 				Tags tag2 = new Tags();
 				tag2.setName("AI haja o5ra");
-				tag2.setTagsCategory(category1);	
+				tag2.setTagsCategory(category1);
 				tagsService.insertTags(tag2);
 			category1.getTags().add(tag1);
 			category1.getTags().add(tag2);
@@ -102,11 +102,11 @@ public class ArticlesManagementApplication implements CommandLineRunner{
 		category1.getArticles().add(article1);
 		categoryService.UpdateCategory(category1);
 		article1.setUser(NormalUser);
-		
+
 		NormalUser.getArticles().add(article1);
 		userService.UpdateHardUser(NormalUser);
-		
-		
+
+
 		System.out.println(articleService.findbyNameAndDescription("rt"));
 	
 		
