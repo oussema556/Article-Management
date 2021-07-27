@@ -15,6 +15,9 @@ import com.StageProject.ArticlesManagement.Service.ArticleService;
 import com.StageProject.ArticlesManagement.Service.CategoryService;
 import com.StageProject.ArticlesManagement.Service.UserService;
 
+import java.util.Collection;
+import java.util.List;
+
 @Controller
 public class controller {
 
@@ -108,14 +111,14 @@ public class controller {
 	
 	
 	//  All Articles
-	@RequestMapping("/adminDashboardArticles")
+	@RequestMapping("/adminDashboard/allArticles")
 	public String adminDashboardArticles(Model model) {
 		model.addAttribute("articles",articleService.findAllArticles());
 		return "adminDashboardArticles";
 	}
 	
 	// All Users
-	@RequestMapping("/adminDashboardUsers")
+	@RequestMapping("/adminDashboard/allUsers")
 	public String adminDashboardUsers(Model model) {
 		model.addAttribute("users",userService.findAllUsers());
 		return "adminDashboardUsers";
@@ -123,7 +126,7 @@ public class controller {
 	
 	
 	// GET USER ARTICLES
-	@RequestMapping("/userArticles")
+	@RequestMapping("/user/Articles")
 	public String userArticles(Model model) {
 		try {
 			User currentLogedInUser=userService.getLoggedUser();
@@ -134,8 +137,13 @@ public class controller {
 		}
 		return "userAllArticles";
 	}
-	
-	
+	//SEARCH FOR ARTICLES
+	@RequestMapping("/searchArticles")
+	public String searchArticlesByKeyword(Model model, @ModelAttribute String keyword){
+		Collection<Article> articlesList=	 articleService.findbyNameAndDescription(keyword);
+		model.addAttribute("articles",articlesList);
+		return  "userAllArticles";
+	}
 	
 	
 	

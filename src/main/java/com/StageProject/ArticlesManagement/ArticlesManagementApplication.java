@@ -107,7 +107,7 @@ public class ArticlesManagementApplication implements CommandLineRunner{
 		userService.UpdateHardUser(NormalUser);
 		
 		
-		System.out.println(articleService.findbyNameAndDescription("xx"));
+		System.out.println(articleService.findbyNameAndDescription("rt"));
 	
 		
 		/*Category c = categoryRepository.findById(1).get();

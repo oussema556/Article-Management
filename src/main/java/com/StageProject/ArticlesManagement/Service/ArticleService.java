@@ -30,7 +30,11 @@ public class ArticleService {
 		return articleRepository.findAll();
 	}
 	
-	public Collection<Article> findbyNameAndDescription(String keyword){
-		return articleRepository.findByNameAndDescription(keyword);
+	public Collection<Article> findbyNameAndDescription(String keyword) throws Exception{
+		Collection<Article> articles= articleRepository.findByNameAndDescription(keyword);
+		if (articles==null){
+			throw new Exception();
+		}
+		return articles;
 	}
 }

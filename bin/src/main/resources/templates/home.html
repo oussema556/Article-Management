@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+	
+	<h1>Hello World</h1>
+	
+	 		<form th:action="@{/logout}" method="post">
+                <input type="submit" value="FLog Out" id="logout-btn">
+              </form>
+</body>
+</html>
