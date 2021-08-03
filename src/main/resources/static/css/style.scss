@@ -1,0 +1,325 @@
+//  imports
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap');
+
+// variable
+
+
+// colors
+$purple : #B935E8;
+$dark-purple : #9b1aca;
+$gray : #6D6D6D;
+$black : #000000;
+$red : #E51515;
+$white : #FFFFFF;
+
+// font sizes
+$extra-big: 3rem;
+$big: 2.25rem;
+$medium: 1.5rem;
+$small: 1.125rem;
+$extra-small: 0.875;
+
+// Functions
+@mixin br {
+    border-radius: 0.25rem;
+}
+
+
+// global
+
+input {
+    box-shadow: none !important;
+
+    &:focus {
+        border: 1px solid $purple !important;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: $black;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+
+
+
+
+
+// real styling 
+
+.webstie-title {
+    font-size: $medium;
+    font-weight: 700;
+}
+
+.login-btn {
+    border: 1px solid $purple;
+    color: $purple;
+    @include br();
+    transition: all .2s;
+
+    &:hover {
+        background-color: $dark-purple;
+        border: 1px solid $dark-purple;
+        color: $white;
+    }
+}
+
+.register-btn {
+    background-color: $purple;
+    border: 1px solid $purple;
+    color: $white;
+    @include br();
+    transition: all .2s;
+
+    &:hover {
+        background-color: $dark-purple;
+        border: 1px solid $dark-purple;
+        color: $white;
+    }
+}
+
+.padi{
+    padding-top: 10rem;
+}
+
+.page-title {
+    h1 {
+        font-size: $extra-big;
+        font-weight: 700;
+    }
+}
+
+
+.search-by-category{
+    h5{
+        font-size: $small;
+    }
+}
+.search-items {
+    button {
+        color: $purple;
+        background-color: $purple;
+        border: 1px solid $purple;
+        color: $white;
+        @include br();
+        transition: all .2s;
+
+        &:hover {
+            background-color: $dark-purple;
+            border: 1px solid $dark-purple;
+            color: $white;
+        }
+    }
+}
+
+
+.my-card-body {
+    min-height: 500px;
+    width: 25rem;
+    height: auto;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    @include br();
+    transition: all .2s;
+
+    &:hover {
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+
+    .title {
+        h3 {
+            color: $purple;
+            font-size: $big;
+            font-weight: 600;
+        }
+    }
+
+    .owner {
+        h4 {
+            color: $gray;
+            font-size: $small;
+        }
+    }
+
+    .descripton {
+        p {
+            color: $black;
+            font-size: $small;
+        }
+    }
+
+    .page-number,
+    .model-number,
+    .category {
+        h4 {
+            color: $purple;
+            font-size: $small;
+            font-weight: 700;
+
+            span {
+                color: $black;
+                font-size: $extra-small;
+                font-weight: 400;
+            }
+        }
+
+
+    }
+
+    .tags {
+        a {
+            border: 1px solid $purple;
+            color: $purple;
+            border-radius: 50px;
+        }
+    }
+}
+
+
+.login-container {
+    width:25rem;   
+    background-color: $white;
+
+    @include br();
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+}
+
+
+.login-title{
+    h1{
+        font-size:$big;
+        font-weight: 700;
+        color: $purple;
+        text-align: center;
+    }
+}
+
+.my-dropdown {
+    button {
+        background-color: transparent ;
+        color: $black;
+        border: none;
+        outline: hidden;
+        transition: all .2s;
+        box-shadow:none !important;
+        &:focus{
+            box-shadow:none !important;
+            background-color: transparent;
+            color: $purple;
+        }
+        &::after{
+            content:url(../icons/Down-arrow.svg);
+            border: none;
+        }
+        &:hover{
+            background-color:transparent;
+            color: $purple;
+        }
+        &:hover ::after{
+            color: $purple;
+        }
+    }
+}
+.dropdown-item{
+   animation: smooth .2s ease;
+}
+
+
+.dropdown-menu{
+    background-color:$purple;
+    transition: smooth .2s;
+}
+
+
+@keyframes smooth{
+    0%{
+        scale: (0);
+        opacity: 0;
+    }
+    100%{
+        scale:(1);
+        opacity: 1;
+    }
+}
+
+
+.dropdown-item{
+    transition: all .2s;
+    color: $white;
+    font-weight: 600;
+    &:hover{
+        background-color: $white;
+    }
+}
+
+.my-dropdown-2{
+    button{
+        background-color: transparent ;
+        color: $black;
+        border: none;
+        outline: hidden;
+        transition: all .2s;
+        box-shadow:none !important;
+        &::after{
+            content: "";
+            display:none;
+        }
+        &:focus{
+            box-shadow:none !important;
+            background-color: transparent;
+            color: $purple;
+        }
+        &:hover{
+            background-color:transparent;
+            color: $purple;
+        }
+    
+    }
+}
+
+
+.dropdown-item-2{
+    animation: smooth .2s ease;
+ }
+ 
+ 
+ .dropdown-menu-2{
+     background-color:$white;
+     transition: smooth .2s;
+ }
+
+ .dropdown-item-2{
+    transition: all .2s;
+    color: $black;
+    font-weight: 600;
+    &:hover{
+        background-color: rgb(228, 228, 228);
+    }
+}
+
+.delete{
+    color: $red;
+    &:hover{
+        color: $red;
+    }
+}
+
+
+
+    @media screen and (max-width: 992px) {
+        .my-d-flex{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+            .login-btn{
+                margin: 0 !important;
+            }
+            }
+        
+      }

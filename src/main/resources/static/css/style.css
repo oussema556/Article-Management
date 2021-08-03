@@ -1,0 +1,304 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap");
+input {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+input:focus {
+  border: 1px solid #B935E8 !important;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+}
+
+.webstie-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.login-btn {
+  border: 1px solid #B935E8;
+  color: #B935E8;
+  border-radius: 0.25rem;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.login-btn:hover {
+  background-color: #9b1aca;
+  border: 1px solid #9b1aca;
+  color: #FFFFFF;
+}
+
+.register-btn {
+  background-color: #B935E8;
+  border: 1px solid #B935E8;
+  color: #FFFFFF;
+  border-radius: 0.25rem;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.register-btn:hover {
+  background-color: #9b1aca;
+  border: 1px solid #9b1aca;
+  color: #FFFFFF;
+}
+
+.padi {
+  padding-top: 10rem;
+}
+
+.page-title h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.search-by-category h5 {
+  font-size: 1.125rem;
+}
+
+.search-items button {
+  color: #B935E8;
+  background-color: #B935E8;
+  border: 1px solid #B935E8;
+  color: #FFFFFF;
+  border-radius: 0.25rem;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.search-items button:hover {
+  background-color: #9b1aca;
+  border: 1px solid #9b1aca;
+  color: #FFFFFF;
+}
+
+.my-card-body {
+  min-height: 500px;
+  width: 25rem;
+  height: auto;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 0.25rem;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.my-card-body:hover {
+  -webkit-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.my-card-body .title h3 {
+  color: #B935E8;
+  font-size: 2.25rem;
+  font-weight: 600;
+}
+
+.my-card-body .owner h4 {
+  color: #6D6D6D;
+  font-size: 1.125rem;
+}
+
+.my-card-body .descripton p {
+  color: #000000;
+  font-size: 1.125rem;
+}
+
+.my-card-body .page-number h4,
+.my-card-body .model-number h4,
+.my-card-body .category h4 {
+  color: #B935E8;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.my-card-body .page-number h4 span,
+.my-card-body .model-number h4 span,
+.my-card-body .category h4 span {
+  color: #000000;
+  font-size: 0.875;
+  font-weight: 400;
+}
+
+.my-card-body .tags a {
+  border: 1px solid #B935E8;
+  color: #B935E8;
+  border-radius: 50px;
+}
+
+.login-container {
+  width: 25rem;
+  background-color: #FFFFFF;
+  border-radius: 0.25rem;
+  -webkit-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.login-title h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #B935E8;
+  text-align: center;
+}
+
+.my-dropdown button {
+  background-color: transparent;
+  color: #000000;
+  border: none;
+  outline: hidden;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.my-dropdown button:focus {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  background-color: transparent;
+  color: #B935E8;
+}
+
+.my-dropdown button::after {
+  content: url(../icons/Down-arrow.svg);
+  border: none;
+}
+
+.my-dropdown button:hover {
+  background-color: transparent;
+  color: #B935E8;
+}
+
+.my-dropdown button:hover ::after {
+  color: #B935E8;
+}
+
+.dropdown-item {
+  -webkit-animation: smooth .2s ease;
+          animation: smooth .2s ease;
+}
+
+.dropdown-menu {
+  background-color: #B935E8;
+  -webkit-transition: smooth .2s;
+  transition: smooth .2s;
+}
+
+@-webkit-keyframes smooth {
+  0% {
+    scale: 0;
+    opacity: 0;
+  }
+  100% {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+@keyframes smooth {
+  0% {
+    scale: 0;
+    opacity: 0;
+  }
+  100% {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+.dropdown-item {
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.dropdown-item:hover {
+  background-color: #FFFFFF;
+}
+
+.my-dropdown-2 button {
+  background-color: transparent;
+  color: #000000;
+  border: none;
+  outline: hidden;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.my-dropdown-2 button::after {
+  content: "";
+  display: none;
+}
+
+.my-dropdown-2 button:focus {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  background-color: transparent;
+  color: #B935E8;
+}
+
+.my-dropdown-2 button:hover {
+  background-color: transparent;
+  color: #B935E8;
+}
+
+.dropdown-item-2 {
+  -webkit-animation: smooth .2s ease;
+          animation: smooth .2s ease;
+}
+
+.dropdown-menu-2 {
+  background-color: #FFFFFF;
+  -webkit-transition: smooth .2s;
+  transition: smooth .2s;
+}
+
+.dropdown-item-2 {
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  color: #000000;
+  font-weight: 600;
+}
+
+.dropdown-item-2:hover {
+  background-color: #e4e4e4;
+}
+
+.delete {
+  color: #E51515;
+}
+
+.delete:hover {
+  color: #E51515;
+}
+
+@media screen and (max-width: 992px) {
+  .my-d-flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    gap: 1rem;
+  }
+  .my-d-flex .login-btn {
+    margin: 0 !important;
+  }
+}
+/*# sourceMappingURL=style.css.map */

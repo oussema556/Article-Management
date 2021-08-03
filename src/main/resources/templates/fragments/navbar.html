@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+</head>
+
+<body th:fragment="navbar">
+<!-- NavBar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+        <a class="navbar-brand webstie-title flex-grow-1" th:href="@{/}">Article Webstie</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end my-d-flex" id="navbarNavDropdown">
+            <div class="dropdown my-dropdown" sec:authorize="isAuthenticated()">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false" th:text="${user.userName}">
+                    UserName
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li sec:authorize="hasAnyAuthority('USER')"><a class="dropdown-item" th:href="@{/User/createArticle}">Create Articles</a></li>
+                    <li sec:authorize="hasAnyAuthority('USER')"><a class="dropdown-item" th:href="@{/User/myArticles}">My Articles</a></li>
+                    <li sec:authorize="hasAnyAuthority('ADMIN')"><a class="dropdown-item" th:href="@{/Admin/adminDashboardArticles}">Articles Dashboard</a></li>
+                    <li sec:authorize="hasAnyAuthority('ADMIN')"><a class="dropdown-item" th:href="@{/Admin/adminDashboardallUsers}">Users Dashboard</a></li>
+                    <li sec:authorize="hasAnyAuthority('ADMIN')"><a class="dropdown-item" th:href="@{/Admin/categories}">Categories Dashboard</a></li>
+                    <li><a class="dropdown-item" th:href="@{/updateUser}">Edit Profile</a></li>
+                    <li><form th:action="@{/logout}" method="post">
+                        <input type="submit" value="Log Out" id="logout-btn" class="dropdown-item">
+                    </form>
+                    </li>
+
+                </ul>
+            </div>
+            <a th:href="@{/login}" class="login-btn py-2 px-4 mx-4" sec:authorize="isAnonymous()">Login</a>
+            <a th:href="@{/register}" class="register-btn py-2 px-4" sec:authorize="isAnonymous()">Register</a>
+        </div>
+    </div>
+</nav>
+
+
+
+
+    <!--
+   -->
+
+</body>
+
+</html>

@@ -1,18 +1,119 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org"
-		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
-	<title>Login</title>
+	<title>Home</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+
 
 </head>
+
 <body>
-	
-	<h1>Hello World</h1>
-	
-	 		<form th:action="@{/logout}" method="post">
-                <input type="submit" value="FLog Out" id="logout-btn">
-              </form>
+	<!-- NavBar -->
+	<div th:replace="fragments/navbar :: navbar"></div>
+
+	<div class="container">
+		<div class="row justify-content-center align-items-center padi">
+			<div class="page-title col-lg-7 col-md-4">
+				<h1>Articles</h1>
+			</div>
+			<div class="col-lg-5 col-md-8 my-search-bar search-bar d-flex justify-content-end align-items-center">
+
+				<form class="d-flex search-items"  th:action="@{/searchArticles}" th:object="${search}" method="GET">
+					<div class="search-by-category mx-5">
+						<select class="form-select" aria-label="Default select example" name="category" th:field="*{category}">
+							<option selected value="-1">Choose Category</option>
+							<option th:each="category:${categories}" th:value="${category.categoryId}"  th:text="${category.categoryName}">category</option>
+						</select>
+
+					</div>
+					<input class="form-control me-2" type="search" placeholder="Search" value="" name="keyword" th:field="*{keyword}" aria-label="Search">
+					<input class="register-btn py-2 px-4" value="Search" type="submit">
+				</form>
+			</div>
+		</div>
+		<hr>
+		<div class="cards-body mt-5 container">
+			<div class="row" >
+				<div class="col-lg-4 col-md-12 col-sm-12 d-flex justify-content-center" th:if="${articles!=null and articles.size()>0}" th:each="article:${articles}">
+
+
+
+					<div class="my-card-body p-4 mt-4">
+						<div class="tiltexmore d-flex justify-content-between">
+							<div class="title">
+								<h3 th:text="${article.name}"></h3>
+							</div>
+
+						</div>
+						
+						<div class="owner">
+							<h4 th:text="${article.user.userName}"></h4>
+						</div>
+						<div class="descripton my-4 mt-4">
+							<p th:text="${article.description}"></p>
+						<div class="model-number my-3">
+							<h4>Model Number: <span th:text="${article.modelNumber}"></span></h4>
+						</div>
+						<div class="page-number my-3">
+							<h4>Page Number: <span th:text="${article.pageNumber}"></span></h4>
+						</div>
+						<div class="category my-3">
+							<h4>Category: <span th:text="${article.articleCategory.categoryName}"></span> </h4>
+						</div>
+						<div class="tags my-3">
+							<a class="px-3" href="#">Tag</a>
+							<a class="px-3" href="#">Tag</a>
+							<a class="px-3" href="#">Tag</a>
+							<a class="px-3" href="#">Tag</a>
+
+						</div>
+						<div class="react d-flex mt-5">
+							<div class="like">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+									xmlns="http://www.w3.org/2000/svg">
+									<path
+										d="M3.98389 12.6106L9.11798 19.5107C10.5955 21.4964 13.4045 21.4964 14.882 19.5107L20.0161 12.6106C21.328 10.8475 21.328 8.34218 20.0161 6.57906C18.0957 3.9981 13.6571 4.76465 12 7.54855C10.3429 4.76465 5.90428 3.9981 3.9839 6.57906C2.67204 8.34218 2.67203 10.8475 3.98389 12.6106Z"
+										stroke="black" stroke-width="1.5" stroke-linecap="round"
+										stroke-linejoin="round" />
+								</svg>
+								<span>Like</span>
+							</div>
+							<div class="comment mx-4">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+									xmlns="http://www.w3.org/2000/svg">
+									<path d="M9 9H13M9 15H12M9 12H15" stroke="black" stroke-width="1.5"
+										stroke-linecap="round" />
+									<path
+										d="M3.35288 8.95043C4.00437 6.17301 6.17301 4.00437 8.95043 3.35288C10.9563 2.88237 13.0437 2.88237 15.0496 3.35288C17.827 4.00437 19.9956 6.17301 20.6471 8.95044C21.1176 10.9563 21.1176 13.0437 20.6471 15.0496C19.9956 17.827 17.827 19.9956 15.0496 20.6471C13.0437 21.1176 10.9563 21.1176 8.95044 20.6471C6.17301 19.9956 4.00437 17.827 3.35288 15.0496C2.88237 13.0437 2.88237 10.9563 3.35288 8.95043Z"
+										stroke="#363853" stroke-width="1.5" />
+								</svg>
+								<span>Comment</span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				</div>
+				<div th:unless="${articles!=null and articles.size()>0}">
+					<p>Not found</p>
+				</div>
+		</div>
+	</div>
+
+	<!-- 
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Log Out" id="logout-btn" class="dropdown-item">
+	</form> -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+	</script>
 </body>
+
 </html>

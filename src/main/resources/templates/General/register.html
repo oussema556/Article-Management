@@ -6,168 +6,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Tas5in</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Register</title>
 </head>
 
 <body>
-<style>
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,500&display=swap");
-* {
-  padding: 0;
-  margin: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-body {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-image: url("/images/bg.jpg");
-  background-size: cover;
-  height: 100vh;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  max-width: 900px;
-}
-
-.container .login-container {
-  background-color: white;
-  min-width: 450px;
-  padding: 2.5rem;
-  min-height: 450px;
-  color: #181D27;
-  -webkit-box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-
-.container .login-container .my-form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 2rem;
-}
-
-.container .login-container .my-form .input-group input {
-  padding: .8rem 0rem;
-  border-radius: 5rem;
-  min-width: 250px;
-  font-size: .75rem;
-  padding-left: 1.5rem;
-  border: 1px #8d8d8d solid;
-  color: #8d8d8d;
-}
-
-.container .login-container .my-form .login-button {
-  padding: 0.75rem;
-  border-radius: 5rem;
-  min-width: 250px;
-  background-color: #c850c0;
-  background-image: -webkit-gradient(linear, left top, right top, from(#c850c0), to(#8d2787));
-  background-image: linear-gradient(90deg, #c850c0 0%, #8d2787 100%);
-  border: none;
-  font-size: 1rem;
-  color: white;
-  font-weight: 500;
-}
-
-.container .login-container .my-form .form-link {
-  font-size: .75rem;
-  color: #8d8d8d;
-}
-
-.container .signup-container {
-  background-color: #8d2787;
-  min-width: 450px;
-  padding: 2.5rem;
-  min-height: 420px;
-  color: white;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  gap: 1.5rem;
-}
-
-.container .signup-container .sign-btn .Sign-button {
-  background-color: #8d2787;
-  color: white;
-  border: 1px white solid;
-  border-radius: 5rem;
-  padding: 0.75rem 2rem;
-}
-/*# sourceMappingURL=style.css.map */
-</style>
-
-    <div class="container">
-      
-        <div class="signup-container" data-aos="flip-right" data-aos-delay="300">
-            <div class="title">
-                <h1>Sign in</h1>
+	<!-- NavBar -->
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <div class="container d-flex  justify-content-center align-items-center" style="height:100vh;">
+          <div class="login-container p-5">
+            <div class="login-title">
+              <h1>Register</h1>
             </div>
-           <div class="intro">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque 
-            </p>
-           </div>
-                <div class="sign-btn">
-                    <a class="Sign-button" href="login.html">Sign Up</a>    
-                </div>
-        </div>
-          <div class="login-container" data-aos="zoom-out-down">
-           
-            <form th:action="@{/insertUserIntoDB}" th:object="${User}" class="my-form" method="POST">
-                <h1>Sign in</h1>
-                 <div class="input-group">
-                <input type="text" placeholder="UserName" id="username" name="username" th:field="*{userName}">
-               </div>
-               <div class="input-group">
-                <input type="text" placeholder="Email" id="email" name="email">
-               </div>
-                <div class="input-group">
-                    <input type="password" placeholder="xxxxxxxx" id="password" name="password">
-                </div>
-                <input class="login-button" value="Sign In" type="submit">
-                <a href="login.html" class="form-link"> Already have an Account?</a>
+            <form th:action="@{/insertUserIntoDB}" th:object="${User}" class="mt-5 my-form d-flex flex-column" method="POST">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">User Name</label>
+                <input type="text" placeholder="UserName" id="username" name="username" th:field="*{userName}" class="form-control">
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                <input type="text" placeholder="Email" id="email" name="email" class="form-control">
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Password</label>
+                <input  type="password" placeholder="xxxxxxxx" id="password" name="password" class="form-control">
+              </div>
+
+
+
+               
+               
+                <input class="register-btn py-2 px-4" value="Sign In" type="submit">
             </form>
             
         </div>
     </div>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
-      </script>
+
 </body>
 </html>
+
+

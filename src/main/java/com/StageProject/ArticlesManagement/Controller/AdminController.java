@@ -1,6 +1,7 @@
 package com.StageProject.ArticlesManagement.Controller;
 
 import com.StageProject.ArticlesManagement.Entity.Category;
+import com.StageProject.ArticlesManagement.Entity.User;
 import com.StageProject.ArticlesManagement.Service.ArticleService;
 import com.StageProject.ArticlesManagement.Service.CategoryService;
 import com.StageProject.ArticlesManagement.Service.UserService;
@@ -26,6 +27,8 @@ public class AdminController {
     // All Users
     @RequestMapping("Admin/adminDashboardallUsers")
     public String adminDashboardUsers(Model model) {
+        User user = userService.getLoggedUser();
+        model.addAttribute("user",user);
         model.addAttribute("users",userService.findAllUsers());
         return "Admin/adminDashboardUsers";
     }
@@ -33,12 +36,16 @@ public class AdminController {
     // All Articles
     @RequestMapping("Admin/adminDashboardArticles")
     public String adminDashboardArticles(Model model){
+        User user = userService.getLoggedUser();
+        model.addAttribute("user",user);
         model.addAttribute("articles",articleService.findAllArticles());
-        return "Admin/adminDashboardArticle";
+        return "Admin/adminDashboardArticles";
     }
 
     @RequestMapping("Admin/categories")
     public String allCategories(Model model){
+        User user = userService.getLoggedUser();
+        model.addAttribute("user",user);
         model.addAttribute("categories",categoryService.findAllCategories());
         return "Admin/categories";
     }
@@ -46,10 +53,10 @@ public class AdminController {
     public String addCateogryIntoDB(Model model, @ModelAttribute("Category") Category category) {
         try {
             categoryService.insertCategory(category);
-            model.addAttribute("category",category);
+            model.addAttribute("categories",category);
         }catch(Exception e) {
             e.printStackTrace();
         }
-        return "Admin/categories";
+        return "redirect:/Admin/categories";
     }
 }

@@ -27,6 +27,8 @@ public class UserController {
     //CREATE ARTICLE
     @RequestMapping("User/createArticle")
     public String CreateArticle(Model model) {
+        User user = userService.getLoggedUser();
+        model.addAttribute("user",user);
         model.addAttribute("categories",categoryService.findAllCategories());
         model.addAttribute("Article",new Article());
         return "User/createArticle";
@@ -48,10 +50,11 @@ public class UserController {
     }
 
     // GET USER ARTICLES
-    @RequestMapping("User/userArticles")
+    @RequestMapping("User/myArticles")
     public String userArticles(Model model) {
         try {
             User currentLogedInUser=userService.getLoggedUser();
+            model.addAttribute("user",currentLogedInUser);
             model.addAttribute("articles",currentLogedInUser.getArticles());
         }
         catch(Exception e) {

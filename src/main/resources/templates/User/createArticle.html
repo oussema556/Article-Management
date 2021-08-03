@@ -132,11 +132,12 @@ body {
 }
 /*# sourceMappingURL=style.css.map */
 </style>
+<div th:replace="fragments/navbar :: navbar"></div>
 
     <div class="container">
         <div class="login-container" data-aos="zoom-out-down">
            
-            <form th:action="@{/insertArticleIntoDB}" th:object="${Article}" class="my-form" method="POST">
+            <form th:action="@{/User/insertArticleIntoDB}" th:object="${Article}" class="my-form" method="POST">
                 <h1>Add Article</h1>
                <div class="input-group">
                 <input type="text" placeholder="Article name" id="name" name="name" th:field="*{name}">

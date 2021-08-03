@@ -4,7 +4,9 @@ package com.StageProject.ArticlesManagement.Controller;
 import com.StageProject.ArticlesManagement.Entity.Article;
 import com.StageProject.ArticlesManagement.Entity.Role;
 import com.StageProject.ArticlesManagement.Entity.User;
+import com.StageProject.ArticlesManagement.Model.Search;
 import com.StageProject.ArticlesManagement.Service.ArticleService;
+import com.StageProject.ArticlesManagement.Service.CategoryService;
 import com.StageProject.ArticlesManagement.Service.RoleService;
 import com.StageProject.ArticlesManagement.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,22 +35,21 @@ public class GeneralController {
     @Autowired
     ArticleService articleService;
 
+    @Autowired
+    CategoryService categoryService;
 
-    @RequestMapping("/")
-    public String homepage() {
-        return "/General/home";
-    }
+
 
 
     //LOGIN
     @RequestMapping("/login")
     public String getLoginForm() {
-        return "/General/login";
+        return "/login";
     }
 
 
     //REGISTER
-    @RequestMapping("/General/register")
+    @RequestMapping("/register")
     public String getRegisterForm(Model model) {
         model.addAttribute("User",new User());
         return "/General/register";
@@ -56,7 +57,6 @@ public class GeneralController {
     @RequestMapping(value="/insertUserIntoDB", method= RequestMethod.POST)
     public String insertUserIntoDB(Model model, @ModelAttribute("User") User user) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
         try {
             String encodedPassword = encoder.encode(user.getPassword());
             user.setPassword(encodedPassword);
@@ -74,38 +74,57 @@ public class GeneralController {
         }
 
 
+
         return "redirect:/login";
     }
 
 
     //  All Articles
-    @RequestMapping("/getAllArticles")
+    @RequestMapping("/")
     public String getAllArticles(Model model) {
+        User user = userService.getLoggedUser();
+        model.addAttribute("categories",categoryService.findAllCategories());
+        model.addAttribute("user",user);
         model.addAttribute("articles",articleService.findAllArticles());
-        return "/General/allArticles";
+        model.addAttribute("search",new Search());
+        return "/General/home";
     }
-
 
     //SEARCH FOR ARTICLES
     @RequestMapping("/searchArticles")
-    public String searchArticlesByKeyword(Model model, @ModelAttribute(name="keyword") String keyword){
-        Collection<Article> articlesList= null;
-        try {
-            articlesList = articleService.findbyNameAndDescription(keyword);
+    public String searchArticlesByKeyword(Model model, @ModelAttribute(name="search") Search search){
 
+        Collection<Article> articlesList= null;
+
+        System.out.println("+++++++++++++++++++"+search.getCategory()+search.getKeyword());
+
+        try {
+            if(search.getCategory()==-1){
+                articlesList = articleService.findbyNameAndDescription(search.getKeyword());
+            }
+            else{
+                articlesList = articleService.findByCategoryAndKeyword(search.getCategory(), search.getKeyword());
+
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
         //System.out.println("/////////"+articlesList.size());
         //System.out.println(keyword);
+        User user = userService.getLoggedUser();
+        model.addAttribute("user",user);
         model.addAttribute("articles",articlesList);
-        return  "/General/allArticles";
+        model.addAttribute("categories",categoryService.findAllCategories());
+
+        return  "/General/home";
     }
 
 
     //UPDATE USER
         @RequestMapping("/updateUser")
-    public String getUpdateUserForm(Model model){
+        public String getUpdateUserForm(Model model){
+        User user = userService.getLoggedUser();
+        model.addAttribute("user",user);
         model.addAttribute("User",new User());
         return "/General/updateUser";
     }

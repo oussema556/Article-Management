@@ -3,6 +3,7 @@ package com.StageProject.ArticlesManagement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.lang.Math;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -84,8 +85,15 @@ public class ArticlesManagementApplication implements CommandLineRunner{
 		article1.setDescription("this is number 1");
 		article1.setModelNumber("114523");
 		article1.setUser(NormalUser);
+			List<String> Categories = new ArrayList();
+			Categories.add("AI");
+			Categories.add("Java");
+			Categories.add("Spring");
+			Categories.add("Angular");
+			Categories.add("Js");
 			Category category1= new Category();
-			category1.setCategoryName("AI");
+			int rndnb = (int) ((Math.random() * (5 - 1)) + 1);
+			category1.setCategoryName(Categories.get(rndnb));
 			categoryService.insertCategory(category1);
 				Tags tag1 = new Tags();
 				tag1.setName("AI medecine");

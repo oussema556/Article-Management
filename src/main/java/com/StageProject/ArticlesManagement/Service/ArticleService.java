@@ -45,4 +45,8 @@ public class ArticleService {
 	public Article updateArticle(Article article) {
 		return articleRepository.save(article);
 	}
+
+	public Collection<Article> findByCategoryAndKeyword(int category, String keyword){
+		return articleRepository.findByCategoryAndKeyword(category,keyword);
+	}
 }
