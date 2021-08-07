@@ -49,14 +49,18 @@ public class AdminController {
         model.addAttribute("categories",categoryService.findAllCategories());
         return "Admin/categories";
     }
-    @RequestMapping(value="Admin/addCateogryIntoDB", method= RequestMethod.POST)
+    @RequestMapping(value="/Admin/addCateogryIntoDB", method=RequestMethod.POST)
     public String addCateogryIntoDB(Model model, @ModelAttribute("Category") Category category) {
+
+        System.out.println("test");
         try {
+
             categoryService.insertCategory(category);
+
             model.addAttribute("categories",category);
         }catch(Exception e) {
             e.printStackTrace();
         }
-        return "redirect:/Admin/categories";
+        return "redirect:Admin/categories";
     }
 }
