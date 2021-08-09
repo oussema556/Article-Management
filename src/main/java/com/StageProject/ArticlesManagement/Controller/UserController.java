@@ -46,7 +46,7 @@ public class UserController {
         }
 
 
-        return "redirect:/User/userArticles";
+        return "redirect:/User/myArticles";
     }
 
     // GET USER ARTICLES
@@ -103,9 +103,16 @@ public class UserController {
             article.setArticleId(id);
             article.setUser(currentLogedInUser);
             articleService.updateArticle(article);
-            return "redirect:/User/userArticles";
+            return "redirect:/User/myArticles";
         }
     return "403";
     }
+    // DELETE ARTICLE
+    @RequestMapping("/User/DeleteArticle/{article}")
+    public String deleteArticle(@PathVariable(name="article") Article article){
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        articleService.deleteArticle(article);
 
+        return "redirect:/User/myArticles";
+    }
 }

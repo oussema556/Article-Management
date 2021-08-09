@@ -17,7 +17,19 @@
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
 
-
+<div class="container padi">
+    <form class="d-flex search-items align-items-center"  th:action="@{/searchArticles/{Admin}(Admin='1')}" th:object="${search}" method="GET">
+        <div class="search-by-category mr ">
+            <select class="form-select my-select" aria-label="Default select example" name="category" th:field="*{category}">
+                <option selected value="-1">Choose Category</option>
+                <option th:each="category:${categories}" th:value="${category.categoryId}"  th:text="${category.categoryName}">category</option>
+            </select>
+        </div>
+        <input class="form-control me-2" type="search" placeholder="Search" value="" name="keyword" th:field="*{keyword}" aria-label="Search">
+        <input class="register-btn py-2 px-4" value="Search" type="submit">
+    </form>
+<hr>
+</div>
 <div class="container">
     <table class="table">
         <thead>

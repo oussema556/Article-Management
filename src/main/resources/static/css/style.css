@@ -187,9 +187,11 @@ body {
 }
 
 .dropdown-menu {
-  background-color: #B935E8;
+  background-color: #FFFFFF;
   -webkit-transition: smooth .2s;
   transition: smooth .2s;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
 }
 
 @-webkit-keyframes smooth {
@@ -217,12 +219,12 @@ body {
 .dropdown-item {
   -webkit-transition: all .2s;
   transition: all .2s;
-  color: #FFFFFF;
+  color: #000000;
   font-weight: 600;
 }
 
 .dropdown-item:hover {
-  background-color: #FFFFFF;
+  background-color: #EFEFEF;
 }
 
 .my-dropdown-2 button {
@@ -301,4 +303,27 @@ body {
     margin: 0 !important;
   }
 }
+
+.my-select{
+width: 12rem;
+
+}
+.mr{
+margin-right: 2rem;
+}
+.delete{
+color: #E51515;
+}
+
+
+.svg{
+    max-width:500px;
+    height:auto;
+
+}
+.svg svg{
+    width:100%;
+    height:auto;
+}
+
 /*# sourceMappingURL=style.css.map */

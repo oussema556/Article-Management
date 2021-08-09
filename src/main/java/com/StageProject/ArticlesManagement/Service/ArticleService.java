@@ -22,7 +22,7 @@ public class ArticleService {
 	public Article UpdateArticle(Article article) {	
 		return articleRepository.save(article);
 	}
-	public void deleteArticle(Article article) {	
+	public void deleteArticle(Article article) {
 		articleRepository.delete(article);
 	}
 	
@@ -48,5 +48,9 @@ public class ArticleService {
 
 	public Collection<Article> findByCategoryAndKeyword(int category, String keyword){
 		return articleRepository.findByCategoryAndKeyword(category,keyword);
+	}
+
+	public Collection<Article> findByCategory(int category) {
+		return articleRepository.findByCategory(category);
 	}
 }

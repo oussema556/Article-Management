@@ -2,6 +2,7 @@ package com.StageProject.ArticlesManagement.Controller;
 
 import com.StageProject.ArticlesManagement.Entity.Category;
 import com.StageProject.ArticlesManagement.Entity.User;
+import com.StageProject.ArticlesManagement.Model.Search;
 import com.StageProject.ArticlesManagement.Service.ArticleService;
 import com.StageProject.ArticlesManagement.Service.CategoryService;
 import com.StageProject.ArticlesManagement.Service.UserService;
@@ -39,6 +40,7 @@ public class AdminController {
         User user = userService.getLoggedUser();
         model.addAttribute("user",user);
         model.addAttribute("articles",articleService.findAllArticles());
+        model.addAttribute("search", new Search());
         return "Admin/adminDashboardArticles";
     }
 
@@ -47,20 +49,21 @@ public class AdminController {
         User user = userService.getLoggedUser();
         model.addAttribute("user",user);
         model.addAttribute("categories",categoryService.findAllCategories());
+        model.addAttribute("Category",new Category());
         return "Admin/categories";
     }
     @RequestMapping(value="/Admin/addCateogryIntoDB", method=RequestMethod.POST)
     public String addCateogryIntoDB(Model model, @ModelAttribute("Category") Category category) {
 
-        System.out.println("test");
+
         try {
 
             categoryService.insertCategory(category);
 
-            model.addAttribute("categories",category);
+            model.addAttribute("categories",categoryService.findAllCategories());
         }catch(Exception e) {
             e.printStackTrace();
         }
-        return "redirect:Admin/categories";
+        return "redirect:/Admin/categories";
     }
 }

@@ -10,13 +10,17 @@ import org.springframework.stereotype.Repository;
 import com.StageProject.ArticlesManagement.Entity.Article;
 
 @Repository
-public interface ArticleRepository extends JpaRepository<Article, Integer>{
-	
+public interface ArticleRepository extends JpaRepository<Article, Integer> {
+
 	@Query(value = "SELECT * FROM Articles a WHERE a.name like %:keyWord% or a.description like %:keyWord%", nativeQuery = true)
 	Collection<Article> findByNameAndDescription(String keyWord);
 
 	@Query(value = "SELECT * FROM Articles a WHERE a.Category_id=:category and  a.name like %:keyWord% or a.description like %:keyWord%", nativeQuery = true)
-	Collection<Article> findByCategoryAndKeyword(int category,String keyWord);
+	Collection<Article> findByCategoryAndKeyword(int category, String keyWord);
+
+
+	@Query(value = "SELECT * FROM Articles a WHERE a.Category_id=:category", nativeQuery = true)
+	Collection<Article> findByCategory(int category);
 }
 
 

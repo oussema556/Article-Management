@@ -19,4 +19,6 @@ public class RoleService {
     public Role findByRoleType(String roleType) {
 	    return roleRepository.findByRoleType(roleType);
     }
+
+
 }

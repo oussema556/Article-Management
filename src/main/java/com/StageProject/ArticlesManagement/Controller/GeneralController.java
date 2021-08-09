@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -61,9 +62,11 @@ public class GeneralController {
             String encodedPassword = encoder.encode(user.getPassword());
             user.setPassword(encodedPassword);
             Role userRole= roleService.findByRoleType("USER");
+            System.out.println("////////////"+userRole);
             user.setRoles(null);
             Set<Role> roles= new HashSet<>();
             roles.add(userRole);
+
             user.setRoles(roles);
             userService.insertUser(user);
             model.addAttribute("user",user);
@@ -91,8 +94,8 @@ public class GeneralController {
     }
 
     //SEARCH FOR ARTICLES
-    @RequestMapping("/searchArticles")
-    public String searchArticlesByKeyword(Model model, @ModelAttribute(name="search") Search search){
+    @RequestMapping("/searchArticles/{Admin}")
+    public String searchArticlesByKeyword(Model model, @ModelAttribute(name="search") Search search, @PathVariable(name = "Admin") String isAdmin ){
 
         Collection<Article> articlesList= null;
 
@@ -103,9 +106,14 @@ public class GeneralController {
                 articlesList = articleService.findbyNameAndDescription(search.getKeyword());
             }
             else{
-                articlesList = articleService.findByCategoryAndKeyword(search.getCategory(), search.getKeyword());
-
+                if (search.getKeyword().length()==0){
+                    articlesList= articleService.findByCategory(search.getCategory());
+                }
+                else{
+                    articlesList = articleService.findByCategoryAndKeyword(search.getCategory(), search.getKeyword());
+                }
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -115,7 +123,10 @@ public class GeneralController {
         model.addAttribute("user",user);
         model.addAttribute("articles",articlesList);
         model.addAttribute("categories",categoryService.findAllCategories());
+        if (isAdmin.equals("1")){
 
+            return "Admin/adminDashboardArticles";
+        }
         return  "/General/home";
     }
 

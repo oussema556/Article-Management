@@ -66,8 +66,9 @@ public class ArticlesManagementApplication implements CommandLineRunner{
 		Role adminRole = roleService.newRole(new Role(1,"ADMIN"));
 		AdminUser.getRoles().add(adminRole);
 		userService.insertUser(AdminUser);
+		roleService.newRole(new Role(2,"USER"));
 
-		User NormalUser = new User();
+		/*User NormalUser = new User();
 		NormalUser.setUserId(2);
 		NormalUser.setEmail("firas@gmail.com");
 		NormalUser.setUserName("firas");
@@ -75,13 +76,11 @@ public class ArticlesManagementApplication implements CommandLineRunner{
 		NormalUser.setPassword(encoder.encode("wess"));
 		Role userRole = roleService.newRole(new Role(2,"USER"));
 		NormalUser.getRoles().add(userRole);
-
-
 		userService.insertUser(NormalUser);
 
 
 		Article article1 = new Article();
-		article1.setName("article1dog");
+		article1.setName("last article");
 		article1.setDescription("this is number 1");
 		article1.setModelNumber("114523");
 		article1.setUser(NormalUser);
@@ -115,7 +114,7 @@ public class ArticlesManagementApplication implements CommandLineRunner{
 		userService.UpdateHardUser(NormalUser);
 
 
-		System.out.println(articleService.findbyNameAndDescription("rt"));
+		System.out.println(articleService.findbyNameAndDescription("rt"));*/
 	
 		
 		/*Category c = categoryRepository.findById(1).get();
